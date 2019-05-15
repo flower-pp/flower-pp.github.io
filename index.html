@@ -4,10 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test</title>
+    <title>random color example-event handler property</title>
+    <style>
+        button{
+            margin:10px;
+        }
+    </style>
 </head>
 <body>
-    <div>test pages</div>>
+    <button> change me</button>
+    <script>
+    var btn = document.querySelector('button');
     
+        function random(num){
+            // Math.random():返回一个0.0到1.0的伪随机数
+         return Math.floor(Math.random()*num);
+        }
+        function bgChange(){
+            var rndCol = 'rgb('+ random(255)+','+random(255)+','+random(255)+')';
+            document.body.style.backgroundColor = rndCol;
+        }
+        //鼠标点击一次触发事件
+        // btn.onclick = bgChange;
+        // //鼠标在置于按钮上时发生改变
+        // btn.onfocus = bgChange;
+        // //鼠标移出按钮时发生改变
+        // btn.onblur = bgChange;
+        // //鼠标双击按钮时发生改变
+        // btn.ondblclick = bgChange;
+        // //鼠标移入时发生改变
+        // btn.onmouseover = bgChange;
+        // //鼠标移出时发生改变
+        // btn.onmouseout = bgChange;
+        //window.onkeypress（按下按钮，按下并松开）,window.onkeydown（按下按钮）,window.onkeyup（松开按钮）一旦当按钮被按下时颜色会发生改变。
+        btn.onkeypress = bgChange;//无反应
+        window.onkeypress = bgChange;//有啦
+   //=================DOM2级事件===================//
+    var btn1 = document.querySelector('button');
+    function bgChange(){
+        var rndCol = 'rgb(' + random(255)+','+random(255)+','+random(255)+')';
+        document.body.style.backgroundColor = rndCol;
+    }
+    //addEventListener()函数中，我们具体化了两个参数——我们想要处理器应用上去的事件名称，和包含我们用来回应事件的函数的代码。
+
+    btn.addEventListener('click',bgChange);
+    //另一种写法：
+    btn.addEventListener('click',function(){
+        var rndCol = 'rgb(' + random(255)+','+random(255)+','+random(255)+')';
+        document.body.style.backgroundColor = rndCol; 
+    });
+    //这个removeEventListener可以移除对应的事件监听器
+    removeEventListener('click',bgChange);
+    //使用事件监听器的好处：1.可以灵活移除或增加想要移除的功能
+    //2.可以同时添加多个处理器:
+    //之前是下面的形式，那么函数B会覆盖函数A
+    // myElement.onclick = function A;
+    // myElement.onclick = function B;
+    //如果使用事件监听器:这个函数A和函数B他们都可以工作
+    //    myElement.addEventListener('click',function A);
+    //    myElement.addEventListener('click',function B);
+    
+
+    </script>
 </body>
 </html>
